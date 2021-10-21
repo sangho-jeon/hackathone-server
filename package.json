@@ -4,7 +4,9 @@
   "description": "nodejs test repository",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node app.js",
+    "start:dev": "nodemon --exec babel-node app.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,14 @@
   "homepage": "https://github.com/sangho-jeon/nodejs-mongoose#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^6.0.10"
+    "mongoose": "^6.0.11"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "nodemon": "^2.0.14"
+  }
 }
