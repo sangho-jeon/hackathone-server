@@ -1,10 +1,15 @@
 import mongoose from "mongoose";
+import path from "path";
+import fs from "fs";
+import dotenv from "dotenv";
 
-export default async function () {
+dotenv.config();
+
+export default async () => {
   const connect = () => {
     try {
       mongoose.connect(`mongodb+srv://${process.env.MONGO_HOST}`, {
-        dbName: "wecan",
+        dbName: "hackathon",
         user: process.env.MONGO_USER,
         pass: process.env.MONGO_PASSWORD,
         autoCreate: true,
@@ -26,10 +31,10 @@ export default async function () {
     console.error("MONGODB disconnect. try reconnect");
   });
 
-  console.log("initialize Model Schema");
-  fs.readdirSync(path.join(__dirname, "../models/"))
-    .filter((file) => file.indexOf(".") !== 0 && file.slice(-3) === ".js")
-    .forEach((file) => {
-      require(path.join(__dirname, "../models/", file));
-    });
-}
+  // console.log("initialize Model Schema");
+  // fs.readdirSync(path.join(__dirname, "../models/"))
+  //   .filter((file) => file.indexOf(".") !== 0 && file.slice(-3) === ".js")
+  //   .forEach((file) => {
+  //     require(path.join(__dirname, "../models/", file));
+  //   });
+};

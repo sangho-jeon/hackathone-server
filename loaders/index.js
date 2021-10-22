@@ -1,11 +1,10 @@
-import mainLoader from "./mainLoader";
-import mongodbLoader from "./mongodbloader";
+import mainLoader from "./mainLoader.js";
+import mongodbLoader from "./mongodbloader.js";
 
 export default async (app) => {
-  await expressLoader(app);
+  await mainLoader(app);
   console.log("Express Initialized");
 
   // ... more loaders can be here
   await mongodbLoader();
-  console.log("mongodb connected");
 };
