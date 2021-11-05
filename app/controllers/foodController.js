@@ -9,3 +9,39 @@ export const getAllFood = async function (req, res) {
     return res.jsonResult(500, { message: "Controller error" });
   }
 };
+
+export const getSumFoos = async function (req, res) {};
+
+export const getRecipy = async function (req, res) {
+  try {
+    const params = req.params;
+    const { recipy } = await FoodModel.findOne({ name: params.name });
+    console.log(recipy);
+    return res.jsonResult(200, recipy);
+  } catch (err) {
+    return res.jsonResult(500, { message: "Controller error" });
+  }
+};
+
+export const getNutrition = async function (req, res) {
+  try {
+    const params = req.params;
+    const { nutrition } = await FoodModel.findOne({ name: params.name });
+    return res.jsonResult(200, nutrition);
+  } catch (err) {
+    return res.jsonResult(500, { message: "Controller error" });
+  }
+};
+
+export const getIngred = async function (req, res) {
+  try {
+    const params = req.params;
+    const { ingredients, sauce } = await FoodModel.findOne({
+      name: params.name,
+    });
+
+    return res.jsonResult(200, { ingredients, sauce });
+  } catch (err) {
+    return res.jsonResult(500, { message: "Controller error" });
+  }
+};

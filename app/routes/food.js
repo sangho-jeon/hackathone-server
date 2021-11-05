@@ -8,5 +8,8 @@ router.post("/foodinfo", uploadController.upload);
 router.post("/inginfo", uploadController.uploadIngredients);
 
 router.get("/allfood", foodController.getAllFood);
+router.get("/getrecipy/:name", foodController.getRecipy);
+router.get("/getnutrit/:name", foodController.getNutrition);
+router.get("/getingred/:name", foodController.getIngred);
 
 export default router;
