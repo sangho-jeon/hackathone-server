@@ -6,7 +6,7 @@ export const getIngredient = async function (req, res) {
     console.log(param);
     const data = await IngModel.find()
       .where("name")
-      .equals("test")
+      .equals("ingredient")
       .select(param);
     console.log(data);
     return res.jsonResult(200, data);
