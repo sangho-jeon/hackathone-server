@@ -27,6 +27,7 @@ export default class foodService {
         { name: name },
         {
           ingredients: true,
+          sauce: true,
           nutrition: true,
         }
       );

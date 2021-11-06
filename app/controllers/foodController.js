@@ -26,13 +26,40 @@ export const getSumFoos = async function (req, res) {
         ingredients: true,
       }
     );
-    var temp;
-    total.map((number, index, source) => {
-      temp = number.ingredients;
-      console.log(temp);
-    });
 
-    return res.jsonResult(200, { total });
+    var result = new Object();
+    total.map((number, index, source) => {
+      var temp = new Object();
+      temp = number.ingredients;
+      for (var prop in temp) {
+        if (temp[prop] == null || temp[prop] == undefined) {
+          delete temp[prop];
+        }
+      }
+      if (index == 0) {
+        var index = new Object();
+        index = Object.keys(temp);
+        for (var id in index) {
+          result[index[id]] = temp[index[id]];
+        }
+      } else {
+        var key = new Object();
+        key = Object.keys(temp);
+        for (var id in key) {
+          if (result.hasOwnProperty(key[id])) {
+            var sum = result[key[id]] + temp[key[id]];
+            result[key[id]] = sum;
+          } else {
+            var ori = temp[key[id]];
+            var o = key[id];
+            result[key[id]] = ori;
+            console.log(result[key[id]], typeof o);
+          }
+        }
+      }
+    });
+    console.log(result);
+    return res.jsonResult(200, { result });
   } catch (err) {
     console.log(err);
     return res.jsonResult(500, { message: "Controller error" });
