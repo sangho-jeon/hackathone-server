@@ -10,5 +10,6 @@ router.post("/inginfo", uploadController.uploadIngredients);
 router.get("/getallfood", foodController.getAllFood);
 router.get("/getrecipe/:name", foodController.getRecipe);
 router.get("/getfooddata/:name", foodController.getFoodData);
+router.get("/getsumfoos/:name", foodController.getSumFoos);
 
 export default router;

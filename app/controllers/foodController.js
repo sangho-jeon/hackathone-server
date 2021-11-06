@@ -31,7 +31,10 @@ export const getSumFoos = async function (req, res) {
 
     const ingredients = await FoodModel.aggregate([
       {
-        $match: {},
+        $math: { $in: query },
+      },
+      {
+        $project: { ingredients: 1 },
       },
     ]);
 
