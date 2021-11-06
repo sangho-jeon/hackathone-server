@@ -18,24 +18,30 @@ export const getAllFood = async function (req, res) {
 
 export const getSumFoos = async function (req, res) {
   try {
+    console.log(req.query.name);
     const query = req.query.name.split(",");
 
-    const ingredients = await FoodModel.find(
+    // const ingredients = await FoodModel.find(
+    //   {
+    //     name: { $in: query },
+    //   },
+    //   {
+    //     ingredients: true,
+    //   }
+    // );
+
+    const ingredients = await FoodModel.aggregate([
       {
-        name: { $in: query },
+        $project: {
+          ingredients: 1,
+        },
       },
       {
-        ingredients: true,
-      }
-    );
-
-    // const ingredients = await FoodModel.aggregate([
-    //   {
-    //     $math: {
-    //       name: "fkaus",
-    //     },
-    //   },
-    // ]);
+        $match: {
+          name: { $in: query },
+        },
+      },
+    ]);
 
     console.log(ingredients);
     return res.jsonResult(200, { ingredients });
