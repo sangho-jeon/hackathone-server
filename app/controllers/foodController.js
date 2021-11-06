@@ -2,7 +2,13 @@ import FoodModel from "../models/food.js";
 
 export const getAllFood = async function (req, res) {
   try {
-    const allFoods = await FoodModel.find();
+    const allFoods = await FoodModel.find(
+      {},
+      {
+        name: true,
+        substring: true,
+      }
+    );
     return res.jsonResult(200, allFoods);
   } catch (err) {
     console.log(err);
@@ -10,7 +16,16 @@ export const getAllFood = async function (req, res) {
   }
 };
 
-export const getSumFoos = async function (req, res) {};
+// export const getSumFoos = async function (req, res) {
+//   try {
+//     const query = req.query;
+//     console.log(query);
+//     return res.jsonResult(200, { message: "ok" });
+//   } catch (err) {
+//     console.log(err);
+//     return res.jsonResult(200, { message: "fail" });
+//   }
+// };
 
 export const getRecipy = async function (req, res) {
   try {

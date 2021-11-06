@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const foodSchema = new Schema(
   {
     name: { type: String, required: true, unique: true },
+    subname: { type: String },
     recipy: { type: String, required: true },
     ingredients: {
       감자: { type: Number },
@@ -21,7 +22,6 @@ const foodSchema = new Schema(
       아보카도: { type: Number },
       고구마: { type: Number },
       대파: { type: Number },
-      햄: { type: Number },
       매추리알: { type: Number },
       소시지: { type: Number },
       사과: { type: Number },
@@ -57,6 +57,7 @@ const foodSchema = new Schema(
       부침가루: { type: Boolean },
     },
     nutrition: {
+      total_carb: { type: Number },
       protein: { type: Number },
       carb: { type: Number },
       fat: { type: Number },
