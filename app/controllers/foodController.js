@@ -2,7 +2,13 @@ import FoodModel from "../models/food.js";
 
 export const getAllFood = async function (req, res) {
   try {
-    const allFoods = await FoodModel.find();
+    const allFoods = await FoodModel.find(
+      {},
+      {
+        name: true,
+        substring: true,
+      }
+    );
     return res.jsonResult(200, allFoods);
   } catch (err) {
     console.log(err);
