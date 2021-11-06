@@ -20,30 +20,19 @@ export const getSumFoos = async function (req, res) {
     console.log(req.query.name);
     const query = req.query.name.split(",");
 
-    // const ingredients = await FoodModel.find(
-    //   {
-    //     name: { $in: query },
-    //   },
-    //   {
-    //     ingredients: true,
-    //   }
-    // );
-
-    const ingredients = await FoodModel.aggregate([
+    const total = await FoodModel.find(
+      { name: { $in: query } },
       {
-        $project: {
-          ingredients: 1,
-        },
-      },
-      {
-        $match: {
-          name: { $in: query },
-        },
-      },
-    ]);
+        ingredients: true,
+      }
+    );
+    var temp;
+    total.map((number, index, source) => {
+      temp = number.ingredients;
+      console.log(temp);
+    });
 
-    console.log(ingredients);
-    return res.jsonResult(200, { ingredients });
+    return res.jsonResult(200, { total });
   } catch (err) {
     console.log(err);
     return res.jsonResult(500, { message: "Controller error" });

@@ -50,4 +50,24 @@ export default class foodService {
       return { success: false, body: { statusCode: 500, err } };
     }
   }
+
+  static async getSumFoos(query) {
+    try {
+      const ingredients = await FoodModel.aggregate([
+        {
+          $project: {
+            ingredients: 1,
+          },
+        },
+        {
+          $match: {
+            name: { $in: query },
+          },
+        },
+      ]);
+      return { success: true, nutrition };
+    } catch (err) {
+      return { success: false, body: { statusCode: 500, err } };
+    }
+  }
 }
