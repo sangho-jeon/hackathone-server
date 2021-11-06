@@ -82,6 +82,7 @@ export const getAllNut = async function (req, res) {
       },
       {
         nutrition: true,
+        name: true,
       }
     );
     return res.jsonResult(200, nutrition);
