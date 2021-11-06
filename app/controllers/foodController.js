@@ -20,14 +20,23 @@ export const getSumFoos = async function (req, res) {
   try {
     const query = req.query.name.split(",");
 
-    const ingredients = await FoodModel.find(
+    // const ingredients = await FoodModel.find(
+    //   {
+    //     name: { $in: query },
+    //   },
+    //   {
+    //     ingredients: true,
+    //   }
+    // );
+
+    const ingredients = await FoodModel.aggregate([
       {
-        name: { $in: query },
+        $math: { $in: query },
       },
       {
-        ingredients: true,
-      }
-    );
+        $project: { ingredients: 1 },
+      },
+    ]);
 
     console.log(ingredients);
     return res.jsonResult(200, { ingredients });
