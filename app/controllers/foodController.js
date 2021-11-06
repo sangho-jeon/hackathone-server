@@ -16,16 +16,26 @@ export const getAllFood = async function (req, res) {
   }
 };
 
-// export const getSumFoos = async function (req, res) {
-//   try {
-//     const query = req.query;
-//     console.log(query);
-//     return res.jsonResult(200, { message: "ok" });
-//   } catch (err) {
-//     console.log(err);
-//     return res.jsonResult(200, { message: "fail" });
-//   }
-// };
+export const getSumFoos = async function (req, res) {
+  try {
+    const query = req.query.name.split(",");
+
+    const ingredients = await FoodModel.find(
+      {
+        name: { $in: query },
+      },
+      {
+        ingredients: true,
+      }
+    );
+
+    console.log(ingredients);
+    return res.jsonResult(200, { ingredients });
+  } catch (err) {
+    console.log(err);
+    return res.jsonResult(500, { message: "Controller error" });
+  }
+};
 
 export const getRecipy = async function (req, res) {
   try {
