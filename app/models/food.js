@@ -6,7 +6,7 @@ const foodSchema = new Schema(
   {
     name: { type: String, required: true, unique: true },
     subname: { type: String },
-    recipy: { type: String, required: true },
+    recipe: { type: String, required: true },
     ingredients: {
       감자: { type: Number },
       계란: { type: Number },

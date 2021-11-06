@@ -3,6 +3,6 @@ import * as imageController from "../controllers/imageController.js";
 
 var router = express.Router();
 
-router.get("/thubnail/:name", imageController.thunbNail);
+router.get("/image/:name", imageController.thunbNail);
 
 export default router;

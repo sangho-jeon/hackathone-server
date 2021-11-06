@@ -37,22 +37,29 @@ export const getSumFoos = async function (req, res) {
   }
 };
 
-export const getRecipy = async function (req, res) {
+export const getRecipe = async function (req, res) {
   try {
     const params = req.params;
-    const { recipy } = await FoodModel.findOne({ name: params.name });
-    console.log(recipy);
-    return res.jsonResult(200, recipy);
+    const { recipe } = await FoodModel.findOne({ name: params.name });
+    console.log(recipe);
+    return res.jsonResult(200, recipe);
   } catch (err) {
     return res.jsonResult(500, { message: "Controller error" });
   }
 };
 
-export const getNutrition = async function (req, res) {
+export const getFoodData = async function (req, res) {
   try {
     const params = req.params;
-    const { nutrition } = await FoodModel.findOne({ name: params.name });
-    return res.jsonResult(200, nutrition);
+    const foodData = await FoodModel.findOne(
+      { name: params.name },
+      {
+        name: true,
+        ingredient: true,
+        nutrition: true,
+      }
+    );
+    return res.jsonResult(200, foodData);
   } catch (err) {
     return res.jsonResult(500, { message: "Controller error" });
   }
