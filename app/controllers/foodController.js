@@ -22,6 +22,9 @@ export const getSumFoos = async function (req, res) {
         ingredients: true,
       }
     );
+    var mapFunc = function () {
+      emit(this.name, ingredients);
+    };
 
     console.log(ingredients);
     return res.jsonResult(200, { ingredients });
