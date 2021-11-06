@@ -71,3 +71,21 @@ export const getFoodData = async function (req, res) {
     return res.jsonResult(500, { message: "Controller error" });
   }
 };
+
+export const getAllNut = async function (req, res) {
+  try {
+    const query = req.query.name.split(",");
+    const nutrition = await FoodModel.find(
+      {
+        name: { $in: query },
+      },
+      {
+        nutrition: true,
+      }
+    );
+    return res.jsonResult(200, nutrition);
+  } catch (err) {
+    console.log(err);
+    return res.jsonResult(500, { message: "Controller error" });
+  }
+};
